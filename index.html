@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas Voyages – Explorer le monde</title>
+
+    <!-- Police Google Fonts : Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Si tu utilises un framework CSS (Bootstrap, Tailwind…), ajoute son lien ICI, AVANT style.css -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- defer : le script s'exécute une fois le HTML chargé -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="px-12 py-4 bg-[#0F4C81] text-[#FFFFFF]">
+      <span>Atlas Voyages</span>
+    </header>
+    <main class="bg-[#F5F7FA]">
+      <section class="py-10 px-12">
+        <h1 class="font-bold text-2xl text-[#1A2433]">Explorer le monde</h1>
+        <p class="text-[#5B6576]">
+          Choisis un continent, parcours les pays et trouve ta prochaine
+          destination.
+        </p>
+      </section>
+      <section
+        class="flex justify-between py-6 text-[#1A2433] text-sm bg-[#FFFFFF] border border-[#D9E0E8] rounded-xl py-10 px-12"
+      >
+        <div class="grid">
+          <span class="">Continent</span
+          ><select
+            id="category-filter"
+            class="border border-[#D9E0E8] rounded-lg m-4 p-2"
+          >
+            <option value="">All</option>
+          </select>
+        </div>
+        <div class="grid">
+          <span>Rechercher un pays</span
+          ><input
+            type="search"
+            id="search-input"
+            placeholder="Ex. : Morocco"
+            class="border border-[#D9E0E8] rounded-lg m-4 p-2"
+          />
+        </div>
+        <div>
+          <button class="bg-[#0F4C81] p-2 rounded-lg text-[#FFFFFF]">
+            ⇅ Trier par population
+          </button>
+        </div>
+      </section>
+      <section id='countries-section' class="grid grid-cols-3 gap-8 py-10 px-12">
+      </section>
+    </main>
+    <footer class="px-12 py-4">
+      <span class="text-[#5B6576]"
+        >© 2026 Atlas Voyages · Données : countries.dev</span
+      >
+    </footer>
+  </body>
+</html>

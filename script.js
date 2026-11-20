@@ -1,0 +1,134 @@
+const API_URL = "https://countries.dev/countries";
+
+// Tous les pays reçus de l'API (rempli une seule fois, au chargement)
+let allCountries = [];
+const countriesSection = document.getElementById("countries-section");
+
+// TODO : récupère ici les éléments du DOM dont tu as besoin
+
+/**
+ * Récupère tous les pays depuis l'API.
+ * - Utilise fetch avec async/await.
+ * - Appelée UNE SEULE FOIS, au chargement de la page.
+ *
+ * @returns {Promise<Array>} Le tableau de tous les pays.
+ */
+async function fetchCountries() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error("HTTP Error");
+    }
+    allCountries = response.json();
+
+    displayCountries(allCountries)
+  } catch (error) {
+    console.error(error.name + " : " + error.message);
+  }
+}
+
+/**
+ * Crée la carte HTML d'un pays, sur le modèle de la maquette :
+ * drapeau (avec un texte alternatif utile), nom, capitale, population.
+ *
+ * @param {Object} country - Un pays tel que renvoyé par l'API.
+ * @returns {HTMLElement} La carte, prête à être ajoutée à la grille.
+ */
+function createCountryCard(country) {
+
+}
+
+/**
+ * Affiche une liste de pays dans la grille.
+ * - Vide d'abord la grille (sinon les cartes s'accumulent).
+ * - Ajoute une carte par pays.
+ * - Si la liste est vide, affiche le message « Aucun pays ne correspond ».
+ *
+ * @param {Array} countries - Les pays à afficher.
+ */
+function displayCountries(allCountries) {
+    countriesSection.innerHTML = "";
+  allCountries.forEach((country) => {
+    countriesSection.innerHTML += `<div class="border-[#D9E0E8] border rounded-lg">
+          <img
+            src="${country.flags}"
+            class="rounded-lg w-full"
+          />
+          <div class="p-4">
+            <span class="font-semibold text-[#1A2433]">${country.name}</span>
+            <div class="flex justify-between mt-4">
+              <p class="text-[#5B6576]">Capitale</p>
+              <p class="text-[#1A2433]">${country.capital}</p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-[#5B6576]">Population</p>
+              <p class="text-[#1A2433]">${country.population}</p>
+            </div>
+          </div>
+        </div>`;
+  });
+}
+
+/**
+ * Applique les deux filtres EN MÊME TEMPS sur allCountries :
+ * - le continent choisi dans la liste déroulante ;
+ * - le texte saisi dans la recherche (majuscules et minuscules ignorées).
+ * Puis affiche le résultat avec displayCountries().
+ *
+ * Aucune requête vers l'API ici !
+ */
+function filterCountries() {
+  // TODO
+}
+
+// ------------------------------------------------------------
+// BONUS
+// ------------------------------------------------------------
+
+/**
+ * (Bonus) Trie des pays par population, du plus peuplé au moins peuplé.
+ * Attention : ne modifie pas le tableau allCountries d'origine.
+ *
+ * @param {Array} countries
+ * @returns {Array} Un nouveau tableau trié.
+ */
+function sortByPopulation(countries) {
+  // TODO
+}
+
+/**
+ * (Bonus) Affiche ou masque le message « Chargement des pays… ».
+ *
+ * @param {boolean} isLoading - true pour l'afficher, false pour le masquer.
+ */
+function showLoader(isLoading) {
+  // TODO
+}
+
+/**
+ * (Bonus) Affiche un message d'erreur clair quand l'API ne répond pas.
+ *
+ * @param {string} message
+ */
+function showError(message) {
+  // TODO
+}
+
+// ------------------------------------------------------------
+// DÉMARRAGE
+// ------------------------------------------------------------
+
+/**
+ * Point d'entrée de l'application :
+ * 1. récupère les pays avec fetchCountries() et les stocke dans allCountries ;
+ * 2. affiche les pays du continent sélectionné par défaut ;
+ * 3. écoute les changements de continent et la saisie dans la recherche.
+ *
+ * (Bonus) Gère le chargement et les erreurs avec try...catch.
+ */
+async function init() {
+  fetchCountries();
+  createCountryCard(allCountries);
+}
+
+init();
